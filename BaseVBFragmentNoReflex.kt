@@ -18,10 +18,12 @@ abstract class BaseVBFragmentNoReflex<T : ViewBinding> :BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         mFragmentManager = childFragmentManager
-        viewBinding = getViewBindingInflater()
+        viewBinding = getViewBindingInflater(inflater, container, savedInstanceState)
         return viewBinding.root
     }
-    protected abstract fun getViewBindingInflater(): T
+    protected abstract fun getViewBindingInflater(inflater: LayoutInflater,
+                                                  container: ViewGroup?,
+                                                  savedInstanceState: Bundle?): T
     abstract fun initData()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
